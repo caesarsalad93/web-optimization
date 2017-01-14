@@ -20,8 +20,7 @@ I have uploaded the repository to github to host.
 To view the pagespeed score, go to https://developers.google.com/speed/pagespeed/insights/ and enter caesarsalad93.github.io into the web page URL box.
 A score of 90 or above is satisfactory.
 
-To test the page responsiveness, open up google Chrome and navigate to caesarsalad93.github.io
-Alternatively, you can access the pageby opening the indexD.html file in chrome.  
+To test the page responsiveness, open the index.html file in chrome.  
 
 Scroll down and click on the "Cam's Pizzeria" link.  
 
