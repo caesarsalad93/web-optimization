@@ -460,7 +460,8 @@ var resizePizzas = function(size) {
             newWidth = 50 + '%';
             break;
     }
-      var randomPizzas = document.querySelectorAll('.randomPizzaContainer')
+      //Change querySelectorAll to getElementsByClassName
+      var randomPizzas = document.querySelectorAll('.randomPizzaContainer');
       
     for (var i = 0; i < randomPizzas.length; i++) {
       randomPizzas[i].style.width = newWidth;
@@ -478,9 +479,11 @@ var resizePizzas = function(size) {
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
+//Moved pizzasDiv definition outside of for loop. It only needs to be defined once.
+var pizzasDiv = document.getElementById("randomPizzas");
+
 // This for-loop actually creates and appends all of the pizzas when the page loads
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -511,11 +514,14 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
+    
+  //Change querySelectorAll to getElementsByClassName
   var items = document.querySelectorAll('.mover');
+    
+  //Moved phase variable out of its for loop
   var phase = Math.sin(document.body.scrollTop / 1250);
   for (var i = 0; i < items.length; i++) {
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+      items[i].style.left = items[i].basicLeft + 100 * ( phase + (i % 5) ) + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -531,11 +537,17 @@ function updatePositions() {
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
+//Moved movingPizzas outside of for loop
+var movingPizzas = document.querySelector("#movingPizzas1");
+
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
+    
+    //Dynamically generate number of pizzas for the screen as needed.
+  var cols = Math.floor(window.innerWidth / 73.333);
+  var rows = Math.floor(window.innerHeight / 100);
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < cols * rows; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -543,7 +555,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
   updatePositions();
 });

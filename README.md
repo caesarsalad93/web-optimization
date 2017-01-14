@@ -1,12 +1,18 @@
 
 # Website Performance Optimization portfolio project
-I took numerous steps to improve the pagespeed score of the provided index page.
+I took numerous steps to improve the pagespeed score of the provided index page, and improve performance on a second pizza.html page.
 
-Steps included:  
+Optimizing index page:  
 1)Eliminate render-blocking javascript, by adding the async tag to the analytics js request.  
 2)Eliminate render-blocking CSS by inlining all CSS styles.  
 3)Minified CSS, HTML, and JavaScript.  
 4)Reduced image sizes with 3rd party software.  
+
+Optimizing pizza page:  
+1) Moved pizzasDiv definition outside of for loop. It only needs to be defined once.  
+2) Moved phase variable out of its for loop.  
+3) Moved movingPizzas outside of its for loop.  
+4) Dynamically generate number of pizzas for the screen as needed.  
 
 ## Lets test it!
 I have uploaded the repository to github to host.
@@ -15,6 +21,10 @@ To view the pagespeed score, go to https://developers.google.com/speed/pagespeed
 A score of 90 or above is satisfactory.
 
 To test the page responsiveness, open up google Chrome and navigate to caesarsalad93.github.io
+Alternatively, you can access the pageby opening the indexD.html file in chrome.  
+
+Scroll down and click on the "Cam's Pizzeria" link.  
+
 From there, open up the console by:  
 1) clicking on the menu icon in the top right  
 2) more tools  
